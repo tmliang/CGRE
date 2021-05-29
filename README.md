@@ -64,9 +64,9 @@ The best AUC value normally appears when the pos_acc ranges from 0.6 to 0.8.
 ## Evaluation
     python eval.py --name ${model_name}
 
-To reproduce our paper results, you can directly evaluate our pre-trained model by the following command:
+To reproduce our paper results, you can download our pre-trained model from [here](https://drive.google.com/file/d/1h-p8EBvvYbRpgwe7zTCH7oGfJQaSpneD/view?usp=sharing) and unzip it as the `pretrain` folder. Then you can directly evaluate it by the following command:
 
     python eval.py --name CGRE --save pretrain
 
 ## Results
-The experimental results are logged in `./log`. The PR curves are stored in `./log/${model_name}.png`.
+The experimental results are logged in `./results`. The PR curves are stored in `./results/${model_name}.png`.
