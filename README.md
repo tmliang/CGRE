@@ -70,3 +70,12 @@ To reproduce our paper results, you can download our pre-trained model from [her
 
 ## Results
 The experimental results are logged in `./results`. The PR curves are stored in `./results/${model_name}.png`.
+
+## Citation
+Please cite our paper if you find it helpful.
+    @article{liang2021distantly,
+      title={Distantly-Supervised Long-Tailed Relation Extraction Using Constraint Graphs},
+      author={Tianming Liang, Yang Liu, Xiaoyan Liu, Gaurav Sharma, Maozu Guo},
+      journal={arXiv preprint arXiv:2105.11225},
+      year={2021}
+    }
