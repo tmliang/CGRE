@@ -19,9 +19,7 @@ and unzip it as the `data` folder.
 
 ### Data Format
 
-#### Training Data & Testing Data
-
-    train.json & test.json: 
+#### train.json & test.json
 
     [
         {
@@ -33,9 +31,7 @@ and unzip it as the `data` folder.
         ...
     ]
 
-#### Relation-ID Mapping Data   
-
-    rel2id.json:
+#### rel2id.json
 
     {
         "NA": 0,
@@ -43,9 +39,7 @@ and unzip it as the `data` folder.
         ...
     }
 
-#### Type-ID Mapping Data   
-
-    type2id.json:
+#### type2id.json
 
     {
         "NONE": 0,
@@ -53,9 +47,7 @@ and unzip it as the `data` folder.
         ...
     }
 
-#### Constraint Data
-
-    constraint_graph.json:
+#### constraint_graph.json
 
     {
         relation_1: [[head_type_1, tail_type_1], [head_type_2, tail_type_2], ...],
