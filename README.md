@@ -1,6 +1,6 @@
 # CGRE
 
-Codes and datasets for our paper "Distantly-Supervised Long-Tailed Relation Extraction Using Constraint Graphs"[paper link](https://arxiv.org/abs/2105.11225)
+Codes and datasets for our paper [Distantly-Supervised Long-Tailed Relation Extraction Using Constraint Graphs](https://arxiv.org/abs/2105.11225)
 
 ## Requirements
 
