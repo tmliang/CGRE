@@ -12,7 +12,7 @@ Codes and datasets for our paper [Distantly-Supervised Long-Tailed Relation Extr
 
 ### Download
 
-You can download the dataset from [here](https://drive.google.com/file/d/1TWiPmCbV6RcV-jhwbis7ljMnrnysqVF6/view?usp=sharing),
+You can download the dataset from [here](https://drive.google.com/file/d/1TWiPmCbV6RcV-jhwbis7ljMnrnysqVF6),
 and unzip it as the `data` folder.
 
     tar -zxvf data.tar.gz
@@ -64,14 +64,14 @@ The best AUC value normally appears when the pos_acc ranges from 0.6 to 0.8.
 ## Evaluation
     python eval.py --name ${model_name}
 
-To reproduce our paper results, you can download our pre-trained model from [here](https://drive.google.com/file/d/1h-p8EBvvYbRpgwe7zTCH7oGfJQaSpneD/view?usp=sharing) and unzip it as the `pretrain` folder. Then you can directly evaluate it by the following command:
+To reproduce our paper results, you can download our pre-trained model from [here](https://drive.google.com/file/d/1h-p8EBvvYbRpgwe7zTCH7oGfJQaSpneD) and unzip it as the `pretrain` folder. Then you can directly evaluate it by the following command:
 
     python eval.py --name CGRE --save pretrain
 
 ## Results
 The experimental results are logged in `./results`. The PR curves are stored in `./results/${model_name}.png`. 
 
-Also, we provide our curve data which normally consist of `precision.npy` and `recall.npy` in [here](https://drive.google.com/drive/folders/1Ya9DpmRysZIcsavi855iWsCP_kYuITCX?usp=sharing).
+Also, we provide our curve data which normally consist of `precision.npy` and `recall.npy` in [here](https://drive.google.com/drive/folders/1Ya9DpmRysZIcsavi855iWsCP_kYuITCX).
 
 ## Citation
 Please cite our paper if you find it helpful.
