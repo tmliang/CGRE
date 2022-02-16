@@ -71,7 +71,7 @@ To reproduce our paper results, you can download our pre-trained model from [her
 ## Results
 The experimental results are logged in `./results`. The PR curves are stored in `./results/${model_name}.png`. 
 
-Also, we provide our curve data which normally consist of `precision.npy` and `recall.npy` in [here](https://drive.google.com/drive/folders/1Ya9DpmRysZIcsavi855iWsCP_kYuITCX?usp=sharing).
+Also, we provide our curve data which normally consist of `precision.npy` and `recall.npy` in [here](https://drive.google.com/drive/folders/1K7jiuVrygtyo4wGd6imkxWNuoPtvGlch?usp=sharing).
 
 ## Citation
 Please cite our paper if you find it helpful.
