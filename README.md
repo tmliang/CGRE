@@ -8,21 +8,20 @@ Codes and datasets for our paper "Distantly-Supervised Long-Tailed Relation Extr
 * Pytorch 1.4.0+
 * PyTorch Geometric (see https://github.com/rusty1s/pytorch_geometric for detail)
 
-## Training
+## Dataset
 
-    python train.py --name ${model_name}
+Download the datasets and pretrained word embeddings from [here](https://github.com/thunlp/HNRE/tree/master/raw_data), and extract them under `data` folder.
 
-The best AUC value normally appears when the pos_acc ranges from 0.6 to 0.8.
+## Training & Evaluation
 
-## Evaluation
-    python eval.py --name ${model_name}
+Vanilla CGRE consists of PCNN and GCN, but we also provide some different backbone models: CNN, PCNN and Bert for sentence encoding and GCN, GAT and SAGE for graph encoding (see configuration files in `config/` for details). For example, you can try CNN+GAT on NYT-520K by the following command:
 
-To reproduce our paper results, you can directly evaluate our pre-trained model by the following command:
-
-    python eval.py --name CGRE --save pretrain
+    python train.py --config 520K_CNN_GAT.yaml
+and
+    python eval.py --config 520K_CNN_GAT.yaml
 
 ## Results
-The experimental results are logged in `./log`. The PR curves are stored in `./log/${model_name}.png`.
+PR curves are stored in `Curves/`.
 
 ## Data Format
 
