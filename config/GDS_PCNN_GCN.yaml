@@ -1,0 +1,39 @@
+name: GDS_PCNN_GCN
+dataset: GDS
+
+# sent
+sent_encoder: PCNN
+hidden_size: 230
+lambda: 17
+
+# graph
+graph_encoder: GCN
+graph_emb: 150
+graph_hid: 900
+graph_out: 150
+num_layers: 2
+num_heads: 0
+
+# framework
+class_dim: 300
+batch_size: 160
+epoch: 50
+lr: 0.5
+
+## COMMON
+root: data
+processed_data_dir: _processed_data
+train: train.json
+test: test.json
+rel2id: rel2id.json
+type2id: type2id.json
+graph: constraint_graph.json
+vec_dir: vec.txt
+save_dir: ckpt
+log_dir: results
+val_iter: 1
+dropout: 0.5
+seed: 16051643
+pos_dim: 5
+max_length: 120
+max_pos_length: 100

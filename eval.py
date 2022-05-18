@@ -1,11 +1,11 @@
 import torch
 import os
+import sys
 import numpy as np
 from sklearn import metrics
 from data_loader import data_loader
 from Net import CGRE
-from config import config
-from utils import AverageMeter, setup_seed, get_logger
+from utils import AverageMeter, setup_seed, get_logger, config
 import matplotlib.pyplot as plt
 
 
@@ -23,11 +23,14 @@ def test(loader, pn_loaders, logger, opt):
     own_state = model.state_dict()
     for name, param in state_dict.items():
         if name not in own_state:
+            logger.warning(name + " not in this model!")
             continue
         own_state[name].copy_(param)
+    torch.save({'state_dict': own_state}, ckpt)
     logger.info("=== Denoising Evaluation ===")
     y_true, y_pred = valid(loader, model)
-    compute_curve(y_true, y_pred, opt['log_dir'], opt['name'])
+    auc = compute_curve(y_true, y_pred, opt['log_dir'], opt['name'])
+    logger.info("\rAUC: {0}".format(auc*100))
     if pn_loaders is not None:
         for i, pn_loader in enumerate(pn_loaders):
             if i == 0:
@@ -38,10 +41,11 @@ def test(loader, pn_loaders, logger, opt):
                 mode = 'all'
             logger.info("pn_mode: %s" % mode.capitalize())
             y_true_pn, y_pred_pn = valid(pn_loader, model)
-            compute_pn(y_true_pn, y_pred_pn)
+            compute_pn(y_true_pn, y_pred_pn, logger)
     logger.info("=== Long-Tailed Relation Evaluation ===")
-    rel_100, rel_200 = loader.dataset.rel_100, loader.dataset.rel_200
-    hits_at_k(y_true, y_pred, rel_100, rel_200, rel_num)
+    if 'NYT' in opt['dataset']:
+        rel_100, rel_200 = loader.dataset.rel_100, loader.dataset.rel_200
+        hits_at_k(y_true, y_pred, rel_100, rel_200, rel_num, logger)
 
 
 def valid(loader, model):
@@ -53,9 +57,9 @@ def valid(loader, model):
     with torch.no_grad():
         for i, data in enumerate(loader):
             if torch.cuda.is_available():
-                data = [x.cuda() for x in data]
-            word, pos1, pos2, ent1, ent2, mask, type, scope, rel = data
-            output = model(word, pos1, pos2, ent1, ent2, mask, type, scope)
+                data = [x.cuda() if torch.is_tensor(x) else x for x in data]
+            rel = data[-1]
+            output = model(data[:-1])
             label = rel.argmax(-1)
             _, pred = torch.max(output, -1)
             acc = (pred == label).sum().item() / label.shape[0]
@@ -70,12 +74,15 @@ def valid(loader, model):
             avg_pos_acc.update(pos_acc, 1)
             y_true.append(rel[:, 1:])
             y_pred.append(output[:, 1:])
+            sys.stdout.write('\rstep: %d | acc: %f, pos_acc: %f'%(i+1, avg_acc.avg, avg_pos_acc.avg))
+            sys.stdout.flush()
     y_true = torch.cat(y_true).reshape(-1).detach().cpu().numpy()
     y_pred = torch.cat(y_pred).reshape(-1).detach().cpu().numpy()
     return y_true, y_pred
 
 
 def compute_curve(y_true, y_pred, plot_dir, name):
+    auc = metrics.average_precision_score(y_true, y_pred)
     order = np.argsort(-y_pred)
     correct = 0.
     total = y_true.sum()
@@ -87,9 +94,14 @@ def compute_curve(y_true, y_pred, plot_dir, name):
         recall.append(float(correct) / total)
     precision = np.array(precision)
     recall = np.array(recall)
-    auc = metrics.average_precision_score(y_true, y_pred)
-    logger.info("AUC: {0:.3f}".format(auc*100))
+    # auc = metrics.auc(recall, precision)
+    save_dir = 'Curves/' + name
+    if not os.path.exists(save_dir):
+        os.mkdir(save_dir)
+    np.save(save_dir + '/precision.npy', precision)
+    np.save(save_dir + '/recall.npy', recall)
     draw(precision, recall, plot_dir, name)
+    return auc
 
 
 def draw(precision, recall, plot_dir, name):
@@ -101,7 +113,7 @@ def draw(precision, recall, plot_dir, name):
     plt.savefig(os.path.join(plot_dir, name+'.png'), format="png")
 
 
-def compute_pn(y_true, y_pred):
+def compute_pn(y_true, y_pred, logger):
     order = np.argsort(-y_pred)
     p100 = (y_true[order[:100]]).mean()*100
     p200 = (y_true[order[:200]]).mean()*100
@@ -110,7 +122,7 @@ def compute_pn(y_true, y_pred):
     logger.info("P@100: {0:.1f}, P@200: {1:.1f}, P@300: {2:.1f}, Mean: {3:.1f}".format(p100, p200, p300, mean))
 
 
-def hits_at_k(y_true, y_pred, rel_100, rel_200, rel_num):
+def hits_at_k(y_true, y_pred, rel_100, rel_200, rel_num, logger):
     y_true = y_true.reshape(-1, rel_num - 1)
     y_pred = y_pred.reshape(-1, rel_num - 1)
     rel_100_num = 0
@@ -183,7 +195,7 @@ def hits_at_k(y_true, y_pred, rel_100, rel_200, rel_num):
 
 
 if __name__ == '__main__':
-    opt = vars(config())
+    opt = config()
     setup_seed(opt['seed'])
     logger = get_logger(opt['log_dir'], 'eval_result.log')
     loader = data_loader(opt['test'], logger, opt, shuffle=False, training=False)

@@ -1,8 +1,10 @@
 import os
 import sys
+import yaml
 import torch
 import random
 import logging
+import argparse
 import numpy as np
 
 
@@ -36,6 +38,12 @@ class AverageMeter(object):
         # for stats
         return '%.4f (%.4f)' % (self.val, self.avg)
 
+def config():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--config', required=True)
+    with open(os.path.join('config', parser.parse_args().config), 'r') as stream:
+        cfg = yaml.load(stream, Loader=yaml.FullLoader)
+    return cfg
 
 def setup_seed(seed):
     torch.manual_seed(seed)
@@ -43,7 +51,6 @@ def setup_seed(seed):
     np.random.seed(seed)
     random.seed(seed)
     torch.backends.cudnn.deterministic = True
-
 
 def get_logger(log_dir, log_name, level=logging.INFO):
     file = os.path.join(log_dir, log_name)

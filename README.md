@@ -1,6 +1,6 @@
 # CGRE
 
-Codes and datasets for our paper [Distantly-Supervised Long-Tailed Relation Extraction Using Constraint Graphs](https://arxiv.org/abs/2105.11225)
+Codes and datasets for our paper "Distantly-Supervised Long-Tailed Relation Extraction Using Constraint Graphs"
 
 ## Requirements
 
@@ -8,18 +8,27 @@ Codes and datasets for our paper [Distantly-Supervised Long-Tailed Relation Extr
 * Pytorch 1.4.0+
 * PyTorch Geometric (see https://github.com/rusty1s/pytorch_geometric for detail)
 
-## Dataset
+## Training
 
-### Download
+    python train.py --name ${model_name}
 
-You can download the dataset from [here](https://drive.google.com/file/d/1rrywM2Lym1X4l0T-uawHr7HTLPoZHNCG/view?usp=sharing),
-and unzip it as the `data` folder.
+The best AUC value normally appears when the pos_acc ranges from 0.6 to 0.8.
 
-    tar -zxvf data.tar.gz
+## Evaluation
+    python eval.py --name ${model_name}
 
-### Data Format
+To reproduce our paper results, you can directly evaluate our pre-trained model by the following command:
 
-#### train.json & test.json
+    python eval.py --name CGRE --save pretrain
+
+## Results
+The experimental results are logged in `./log`. The PR curves are stored in `./log/${model_name}.png`.
+
+## Data Format
+
+### Training Data & Testing Data
+
+    train.json & test.json: 
 
     [
         {
@@ -31,7 +40,9 @@ and unzip it as the `data` folder.
         ...
     ]
 
-#### rel2id.json
+### Relation-ID Mapping Data   
+
+    rel2id.json:
 
     {
         "NA": 0,
@@ -39,7 +50,9 @@ and unzip it as the `data` folder.
         ...
     }
 
-#### type2id.json
+### Type-ID Mapping Data   
+
+    type2id.json:
 
     {
         "NONE": 0,
@@ -47,38 +60,11 @@ and unzip it as the `data` folder.
         ...
     }
 
-#### constraint_graph.json
+### Constraint Data
+
+    constraint_graph.json:
 
     {
         relation_1: [[head_type_1, tail_type_1], [head_type_2, tail_type_2], ...],
         ...
-    }
-
-
-## Training
-
-    python train.py --name ${model_name}
-
-The best AUC value normally appears when the pos_acc ranges from 0.6 to 0.8.
-
-## Evaluation
-    python eval.py --name ${model_name}
-
-To reproduce our paper results, you can download our pre-trained model from [here](https://drive.google.com/file/d/1h4EZ3HPdTrE2cT1uBkzzrE_8Hj75OWlT/view?usp=sharing) and unzip it as the `pretrain` folder. Then you can directly evaluate it by the following command:
-
-    python eval.py --name CGRE --save pretrain
-
-## Results
-The experimental results are logged in `./results`. The PR curves are stored in `./results/${model_name}.png`. 
-
-Also, we provide our curve data which normally consist of `precision.npy` and `recall.npy` in [here](https://drive.google.com/drive/folders/1K7jiuVrygtyo4wGd6imkxWNuoPtvGlch?usp=sharing).
-
-## Citation
-Please cite our paper if you find it helpful.
-
-    @article{liang2021distantly,
-      title={Distantly-Supervised Long-Tailed Relation Extraction Using Constraint Graphs},
-      author={Tianming Liang, Yang Liu, Xiaoyan Liu, Gaurav Sharma, Maozu Guo},
-      journal={arXiv preprint arXiv:2105.11225},
-      year={2021}
     }
