@@ -7,6 +7,7 @@ Codes and datasets for our paper "Distantly-Supervised Long-Tailed Relation Extr
 * Python 3.6+
 * Pytorch 1.4.0+
 * PyTorch Geometric (see https://github.com/rusty1s/pytorch_geometric for detail)
+* Transformers
 
 ## Dataset
 
