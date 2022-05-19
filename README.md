@@ -25,9 +25,7 @@ PR curves are stored in `Curves/`.
 
 ## Data Format
 
-### Training Data & Testing Data
-
-    train.json & test.json: 
+### train.json & test.json
 
     [
         {
@@ -39,9 +37,7 @@ PR curves are stored in `Curves/`.
         ...
     ]
 
-### Relation-ID Mapping Data   
-
-    rel2id.json:
+### rel2id.json
 
     {
         "NA": 0,
@@ -49,9 +45,7 @@ PR curves are stored in `Curves/`.
         ...
     }
 
-### Type-ID Mapping Data   
-
-    type2id.json:
+### type2id.json 
 
     {
         "NONE": 0,
@@ -59,9 +53,7 @@ PR curves are stored in `Curves/`.
         ...
     }
 
-### Constraint Data
-
-    constraint_graph.json:
+### constraint_graph.json
 
     {
         relation_1: [[head_type_1, tail_type_1], [head_type_2, tail_type_2], ...],
