@@ -2,7 +2,7 @@
 
 This is our implementation for the paper:
 
-> Tianming Liang, Yang Liu, Xiaoyan Liu, Hao Zhang, Gaurav Sharma and Maozu Guo. Distantly-Supervised Long-Tailed Relation Extraction Using Constraint Graphs. In IEEE Transactions on Knowledge and Data Engineering (TKDE), 2022 (Accepted). [Arxiv](https://arxiv.org/abs/2105.11225)
+> Tianming Liang, Yang Liu, Xiaoyan Liu, Hao Zhang, Gaurav Sharma and Maozu Guo. Distantly-Supervised Long-Tailed Relation Extraction Using Constraint Graphs. In IEEE Transactions on Knowledge and Data Engineering (TKDE), 2022 (Accepted). [[Arxiv]](https://arxiv.org/abs/2105.11225)
 
 ## Citation 
 Please cite our paper if our datasets or the code are helpful to you ~ 😊
