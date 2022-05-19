@@ -5,7 +5,7 @@ This is our implementation for the paper:
 > Tianming Liang, Yang Liu, Xiaoyan Liu, Hao Zhang, Gaurav Sharma and Maozu Guo. Distantly-Supervised Long-Tailed Relation Extraction Using Constraint Graphs. In IEEE Transactions on Knowledge and Data Engineering (TKDE), 2022 (Accepted). [[Arxiv](https://arxiv.org/abs/2105.11225)]
 
 ## Citation 
-Please cite our paper if our datasets or the code are helpful to you ~ 😊
+Please cite our paper if our datasets or code are helpful to you ~ 😊
 ```
 @article{liang2022distantly,
   title={Distantly-Supervised Long-Tailed Relation Extraction Using Constraint Graphs},
@@ -25,7 +25,7 @@ Please cite our paper if our datasets or the code are helpful to you ~ 😊
 
 ## Dataset
 
-We provide two processed datasets: NYT-520K, NYT-570K and GDS. Download the datasets and pretrained word embeddings from [here](https://drive.google.com/file/d/12ROz5GkSEl5Ka9a1uuftPqcdpM6aFhGy/view?usp=sharing), and extract them under `data` folder.
+We provide three processed datasets: NYT-520K, NYT-570K and GDS. Download the datasets and pretrained word embeddings from [here](https://drive.google.com/file/d/12ROz5GkSEl5Ka9a1uuftPqcdpM6aFhGy/view?usp=sharing), and extract them under `data` folder.
 
 ## Training & Evaluation
 
