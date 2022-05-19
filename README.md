@@ -22,7 +22,7 @@ Please cite our paper if our datasets or code are helpful to you ~ 😊
 
 ## Dataset
 
-We provide three processed datasets: NYT-520K, NYT-570K and GDS. Download the datasets and pretrained word embeddings from [here](https://drive.google.com/file/d/12ROz5GkSEl5Ka9a1uuftPqcdpM6aFhGy/view?usp=sharing), and extract them under `data` folder.
+We provide three processed datasets: NYT-520K, NYT-570K and GDS. Download the datasets and pretrained word embeddings from [here](https://drive.google.com/file/d/12ROz5GkSEl5Ka9a1uuftPqcdpM6aFhGy/view?usp=sharing), and extract them in `data/`.
 
 ## Training & Evaluation
 
