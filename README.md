@@ -1,6 +1,6 @@
 # CGRE
 
-This repository provides the datasets and code of the paper [Distantly-Supervised Long-Tailed Relation Extraction Using Constraint Graphs](https://arxiv.org/abs/2105.11225).
+This repository provides the implemention for the paper [Distantly-Supervised Long-Tailed Relation Extraction Using Constraint Graphs](https://arxiv.org/abs/2105.11225).
 
 Please cite our paper if our datasets or code are helpful to you ~ 😊
 ```
