@@ -10,7 +10,7 @@ Codes and datasets for our paper "Distantly-Supervised Long-Tailed Relation Extr
 
 ## Dataset
 
-Download the datasets and pretrained word embeddings from [here](https://github.com/thunlp/HNRE/tree/master/raw_data), and extract them under `data` folder.
+Download the datasets and pretrained word embeddings from [here](https://drive.google.com/file/d/12ROz5GkSEl5Ka9a1uuftPqcdpM6aFhGy/view?usp=sharing), and extract them under `data` folder.
 
 ## Training & Evaluation
 
@@ -18,9 +18,11 @@ Vanilla CGRE consists of PCNN and GCN, but we also provide some different backbo
 
     python train.py --config 520K_CNN_GAT.yaml
 and
+
     python eval.py --config 520K_CNN_GAT.yaml
 
 ## Results
+
 PR curves are stored in `Curves/`.
 
 ## Data Format
