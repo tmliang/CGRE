@@ -26,7 +26,9 @@ We provide three processed datasets: NYT-520K, NYT-570K and GDS. Download the da
 
 ## Training & Evaluation
 
-Vanilla CGRE consists of PCNN and GCN, but we also provide some different backbone models: `CNN`, `PCNN` and `Bert` for sentence encoding and `GCN`, `GAT` and `SAGE` for graph encoding (see configuration files in `config/` for details). For example, you can try CNN+GAT on NYT-520K by the following command:
+Vanilla CGRE consists of PCNN and GCN, but we also provide some different backbone models: `CNN`, `PCNN` and `Bert` for sentence encoding and `GCN`, `GAT` and `SAGE` for graph encoding (see configuration files in `config/` for details). 
+
+For example, you can try CNN+GAT on NYT-520K by the following command:
 
     python train.py --config 520K_CNN_GAT.yaml
 and
