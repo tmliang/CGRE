@@ -2,7 +2,7 @@
 
 This repository provides the implemention for the paper [Distantly-Supervised Long-Tailed Relation Extraction Using Constraint Graphs](https://arxiv.org/abs/2105.11225).
 
-Please cite our paper if our datasets or code are helpful to you ~ 😊
+Please cite our paper if our datasets or code is helpful to you ~ 😊
 ```
 @article{liang2022distantly,
   title={Distantly-Supervised Long-Tailed Relation Extraction Using Constraint Graphs},
